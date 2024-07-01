@@ -59,7 +59,22 @@ var eachTicket = allTickets[i];
             var eachCol = eachTicket.querySelectorAll("._1e0c1txw._4cvr1h6o._1tke1ylp._vchhusvi._1bsb1osq");
             if (eachCol[8] && eachCol[8].firstChild && eachCol[8].firstChild.firstChild && eachCol[8].firstChild.firstChild.firstChild) {
                 var resolutionDate = eachCol[8].firstChild.firstChild.firstChild.innerText;
-                console.log(i+1, resolutionDate);
+                var policyNumText = (eachCol[1].firstChild.firstChild.firstChild.innerText).split(" ");
+                var policyNum;
+                if((policyNumText[0]).toLowerCase() === "fw:" || (policyNumText[0]).toLowerCase() === "cics" || (policyNumText[0]).toLowerCase() === "pass"){
+                        if((policyNumText[0]).toLowerCase() === "fw:" && (policyNumText[1]).toLowerCase() === "cics" ){
+                            policyNum = policyNumText[2];
+                        }
+                        else{
+                            policyNum = policyNumText[1];
+                        }
+                }
+                else{
+                    policyNum = policyNumText[0];
+                }
+                
+                console.log(policyNum, resolutionDate);
+                // break
                 let month = resolutionDate.substring(0, 3);
                 // console.log(month);
                 if(month === "May"){
@@ -69,7 +84,8 @@ var eachTicket = allTickets[i];
             }
         }
     }
-    catch{
-            console.error("here is the error", eachTicket, i)
+    catch(e){
+            console.error("here is the error", eachTicket, i, e);
+        break;
     }
 }
