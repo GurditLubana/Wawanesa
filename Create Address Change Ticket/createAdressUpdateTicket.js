@@ -33,6 +33,13 @@ function setChngTeam(){
     document.getElementsByClassName("select-customfield_17511__menu-list")[0].firstChild.click();
 }
 
+function setCategory(){
+
+    var categoryInput = document.getElementsByClassName("select-customfield_12810__input-container")[0];
+    setInput(categoryInput.firstChild, "Address/Phone number");
+    document.getElementsByClassName("select-customfield_12810__menu-list")[0].firstChild.click();
+}
+
 async function createAddressChangeTicket(){
     const summaryInfo = fetchTicketDetails();
     const policyNumber = summaryInfo[0];
