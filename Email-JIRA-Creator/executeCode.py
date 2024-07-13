@@ -3,34 +3,68 @@ import os
 
 outlook = win32.Dispatch('outlook.application')
 namespace = outlook.GetNamespace('MAPI')
-mainDirectory = "C:\\Users\\gurditsingh\\OneDrive - Wawanesa\\Desktop\Return Mails\\"
-
-currentDirectory = "June\\June 17"
-directory = mainDirectory + currentDirectory
-
-accounts = namespace.Accounts
+directory = "C:\\Users\\gurditsingh\\OneDrive - Wawanesa\\Desktop\\Incoming Mails\\July\\July 09\\Life services"
 
 
-# for i in range(accounts.Count):
-#     print(f'Account {i + 1}: {accounts.Item(i + 1).DisplayName}')
+def incomingMails():
+    accounts = namespace.Accounts
 
-account_index = 1
-print("Sending email from: " + accounts.Item(account_index).DisplayName)
+    account_index = 4 # for incoming mails 
 
-for fileName in os.listdir(directory):
-    if fileName.lower().endswith('.pdf'):
-        mail = outlook.CreateItem(0)
-        mail.Subject = fileName
-        mail.Attachments.Add(directory + "\\" + fileName)
-        # mail.Body = 'This is a test email sent from a Python script using Outlook!'
-        # mail.To = 'gurditrajat13@yahoo.com'
-        mail.To = 'JSD-Life-Annuity@jira.wawanesa.com'
+    print("Sending email from: " + accounts.Item(account_index).DisplayName)
 
-        mail._oleobj_.Invoke(*(64209, 0, 8, 0, accounts.Item(account_index)))
+    for fileName in os.listdir(directory):
+        if fileName.lower().endswith('.pdf'):
+            mail = outlook.CreateItem(0)
+            mail.Body = "Good afternoon,\n\nPlease find the new mail we received today.\n\nRegards"
+            mail.Subject = fileName
+            mail.Attachments.Add(directory + "\\" + fileName)
+            mail.To = 'lifeservices@wawanesa.com'
+
+            mail._oleobj_.Invoke(*(64209, 0, 8, 0, accounts.Item(account_index)))
 
 
-        try:
-            # mail.Send()
-            print('Email sent successfully for ' + fileName)
-        except Exception as e:
-            print(f'Error: {e}')
+            try:
+                # mail.Send()
+                print('Email sent successfully for ' + fileName)
+            except Exception as e:
+                print(f'Error: {e}')
+
+
+
+
+
+
+
+def returnMails():
+
+    mainDirectory = "C:\\Users\\gurditsingh\\OneDrive - Wawanesa\\Desktop\Return Mails\\"
+    currentDirectory = "July\\July 11"
+    directory = mainDirectory + currentDirectory
+
+    accounts = namespace.Accounts
+
+    account_index = 3
+
+    print("Sending email from: " + accounts.Item(account_index).DisplayName)
+
+    for fileName in os.listdir(directory):
+        if fileName.lower().endswith('.pdf'):
+            mail = outlook.CreateItem(0)
+            # mail.Body = "Good afternoon,\nPlease find the mail we received today.\nRegards"
+            mail.Subject = fileName
+            mail.Attachments.Add(directory + "\\" + fileName)
+            mail.To = 'JSD-Life-Annuity@jira.wawanesa.com'
+
+            mail._oleobj_.Invoke(*(64209, 0, 8, 0, accounts.Item(account_index)))
+
+
+            try:
+                mail.Send()
+                print('Email sent successfully for ' + fileName)
+            except Exception as e:
+                print(f'Error: {e}')
+
+
+returnMails()
+# incomingMails()
