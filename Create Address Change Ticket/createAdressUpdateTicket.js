@@ -25,12 +25,11 @@ function setInput(inputElement, inputValue){
 }
 
 
-async function setChngTeam(){
+function setChngTeam(){
     var chngLabel = document.getElementById("customfield_17511-field-label");
     var parentDiv = (chngLabel.closest('div')).lastChild.firstChild;
     var inputChangeTeam = parentDiv.children[2].children[0].lastChild.firstChild;
     setInput(inputChangeTeam, "Reception");
-    await delay(5);
     document.getElementsByClassName("select-customfield_17511__menu-list")[0].firstChild.click();
 }
 
@@ -46,7 +45,7 @@ async function createAddressChangeTicket(){
     setInput(inputSummary, summaryString);
     inputSummary.click();
     await delay(500);
-    await setChngTeam();
+    setChngTeam();
 }
 
 
