@@ -1,3 +1,6 @@
+
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 function fetchTicketDetails(){
     const summaryBtn = document.getElementsByClassName("css-t0icuu");
     const ticketName = summaryBtn[0].getAttribute('aria-label');
@@ -11,7 +14,40 @@ function fetchTicketDetails(){
     var address = addressLine.split("-")[1].trim();
     
 
-    return [policyNo, ownerName,address]
+    return [policyNo, ownerName, address]
 }
 
-console.log(fetchTicketDetails());
+function setInput(inputElement, inputValue){
+    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
+    nativeInputValueSetter.call(inputElement, inputValue);
+    inputElement.dispatchEvent(new Event('input', { bubbles: true }));
+    inputElement.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+
+async function setChngTeam(){
+    var chngLabel = document.getElementById("customfield_17511-field-label");
+    var parentDiv = (chngLabel.closest('div')).lastChild.firstChild;
+    var inputChangeTeam = parentDiv.children[2].children[0].lastChild.firstChild;
+    setInput(inputChangeTeam, "Reception");
+    await delay(5);
+    document.getElementsByClassName("select-customfield_17511__menu-list")[0].firstChild.click();
+}
+
+async function createAddressChangeTicket(){
+    const summaryInfo = fetchTicketDetails();
+    const policyNumber = summaryInfo[0];
+    const policyOwnerName = summaryInfo[1];
+    const summaryString = policyNumber + " - " + policyOwnerName;
+    const createBtn = document.getElementById("createGlobalItem");
+    createBtn.click();
+    await delay(1500);
+    const inputSummary = document.getElementById("summary-field");
+    setInput(inputSummary, summaryString);
+    inputSummary.click();
+    await delay(500);
+    await setChngTeam();
+}
+
+
+createAddressChangeTicket();
