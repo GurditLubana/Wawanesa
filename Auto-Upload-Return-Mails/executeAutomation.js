@@ -1,7 +1,11 @@
 javascript: (
     function () {
         function extractPolicyNumber(fileName) {
-            return (fileName.split(' ')[0]).trim();
+            var splitFileName = (fileName.split(' '));
+            if(splitFileName[1] === "&"){
+                return [splitFileName[0].trim(), splitFileName[2].trim()]
+            }
+            return [splitFileName[0].trim()];
         }
         async function selectDocType(checkbox, delay,rows) {
             if (checkbox && !checkbox.checked) {
@@ -44,19 +48,20 @@ javascript: (
                     await delay(5);
 
                     var docName = (rows[i].children[2]).innerText;
-                    var policyNum = extractPolicyNumber(docName);
-
-                    var numberInput = document.getElementById("_number_text");
-                    numberInput.value = policyNum;
-
-                    var addButton = document.getElementById("_AddButton");
-                    addButton.click();
-                    await delay(5);
-
-                    var updateButton = document.getElementById("_update_selected");
-                    updateButton.click();
-                    await delay(5);
-
+                    var policyNumArray = extractPolicyNumber(docName);
+                    for(var x in policyNumArray){
+                        var policyNum = policyNumArray[x];
+                        var numberInput = document.getElementById("_number_text");
+                        numberInput.value = policyNum;
+    
+                        var addButton = document.getElementById("_AddButton");
+                        addButton.click();
+                        await delay(5);
+    
+                        var updateButton = document.getElementById("_update_selected");
+                        updateButton.click();
+                        await delay(5);
+                    }
                     var clearButton = document.getElementById("_ClearButton");
                     clearButton.click();
                     await delay(5);
@@ -68,12 +73,10 @@ javascript: (
                     docNameInput.dispatchEvent(new Event('input', { bubbles: true }));
                     docNameInput.dispatchEvent(new Event('change', { bubbles: true }));
                     await delay(5);
-
                 }
             } else {
                 console.error('Table body not found.');
             }
         }
         processRows();
-
     })();
