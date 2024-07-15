@@ -49,7 +49,7 @@ function assignToMe() {
 function clickCreateBtn(){
     var submitCreateBtn = document.getElementsByClassName("css-1jk3zmn")[0];
     console.log(submitCreateBtn);
-    // submitCreateBtn.click();
+    submitCreateBtn.click();
 }
 async function setDescription(newAddress) {
     var date = new Date();
