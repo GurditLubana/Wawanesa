@@ -8,9 +8,17 @@ javascript: (
             var policyNo = splitTicketName[0].trim();
             var ownerName = splitTicketName[1].trim();
             const commentSection = document.getElementsByClassName("ak-renderer-document");
-            const addressLine = commentSection[0].children[8].innerHTML;
-            var index = addressLine.indexOf('-');
-            var address = addressLine.substring(index + 1).trim();
+            const parentAddressLine = commentSection[0].children[8];
+            if(parentAddressLine.children.length === 0){
+                var addressLine = parentAddressLine.innerHTML;
+                var index = addressLine.indexOf('-');
+                var address = addressLine.substring(index + 1).trim();
+            }
+            else{
+                var addressLine = parentAddressLine.children[0];
+                var address = addressLine.children.length === 0 ? addressLine.innerHTML.trim() : addressLine.children[0].innerHTML.trim();
+            }
+            
             return [policyNo, ownerName, address]
         }
         function setInput(inputElement, inputValue) {
