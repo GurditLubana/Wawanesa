@@ -16,8 +16,10 @@ javascript:(function() {
     console.log(polOwnerName.endsWith(".pdf"));
     var recipient = "gurditsingh2307@gmail.com";
     var subject = `Address Update Request - Policy # ${policyNum} - ${polOwnerName}`;
-    var body = "Hello, this is a test email.";
+    var address = "77 university";
+    var currentTime = (new Date()).toLocaleTimeString();
+    var greetings = currentTime.endsWith("AM") ? "Good morning,\n": "Good afternoon,\n";
+    var body = `${greetings}\nThe mail recently sent to our mutual member ${polOwnerName}, has been returned to our office.\nWe had tried contacting the member, but we were not successful. Our records indicate the following address:\n\n${address}\n\nPlease notify us of the member’s current address as soon as possible.\n\nThank you,`;
     var mailto_link = 'mailto:' + recipient + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     window.location.href = mailto_link;
-    
 })();
