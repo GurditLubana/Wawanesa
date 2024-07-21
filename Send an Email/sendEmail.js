@@ -1,4 +1,35 @@
 javascript: (function () {
+    function showAddressInputScreen(){
+        var style = document.createElement('style');
+        style.innerHTML = `
+            #modalBackground{position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.6);display:flex;justify-content:center;align-items:center;}
+            #modal{background:#ddd;padding:20px;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,0.1);width:400px;text-align:center;font-family:sans-serif;}
+            #modal textarea{width:95%;height:150px;margin-bottom:10px;padding:10px;border:1px solid black;border-radius:5px;background-color:#ebecf0;color:black;font-size:larger;font-family:sans-serif;}
+            #modal button{padding:10px 20px;margin:5px;border:none;border-radius:5px;cursor:pointer;background:#007bff;color:white;}
+            #modal button:hover{background:#042f5e}
+
+        `;
+        document.head.appendChild(style);
+
+        var modalBackground = document.createElement('div');
+        modalBackground.id = 'modalBackground';
+
+        var modal = document.createElement('div');
+        modal.id = 'modal';
+        modal.innerHTML = `
+            <textarea placeholder="Enter Previous Address here..."></textarea>
+            <button id="btn1">Email Broker</button>
+            <button id="btn2">Email Member</button>
+            <button id="btn3">Cancel</button>
+        `;
+
+        modalBackground.appendChild(modal);
+        document.body.appendChild(modalBackground);
+
+        document.getElementById('btn3').onclick = function() {
+            document.body.removeChild(modalBackground);
+        };
+    }
     function extractEmailFrmString(stringName) {
         var regex = /Email: (\S+)/;
         var match = stringName.match(regex);
