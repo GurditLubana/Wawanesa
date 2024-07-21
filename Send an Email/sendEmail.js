@@ -1,4 +1,4 @@
-javascript: (function () {
+javascript:(function () {
     function extractEmailFrmString(stringName) {
         var regex = /Email: (\S+)/;
         var match = stringName.match(regex);
@@ -30,6 +30,7 @@ javascript: (function () {
         var emailArray = fetchEmailAddress(commentSection[0]);
         return [splitTicketName[0].trim(), splitTicketName[1].trim(), emailArray[0], emailArray[1]];
     }
+
     function draftEmail(address,emailSVG) {
         var ticketDetails = fetchTicketDetails();
         var policyNum = ticketDetails[0];
@@ -44,7 +45,12 @@ javascript: (function () {
         var subject = `Address Update Request - Policy # ${policyNum} - ${polOwnerName}`;
         var currentTime = (new Date()).toLocaleTimeString();
         var greetings = currentTime.endsWith("AM") ? "Good morning,\n" : "Good afternoon,\n";
-        var body = `${greetings}\nThe mail recently sent to our mutual member ${polOwnerName}, has been returned to our office.\nWe had tried contacting the member, but we were not successful. Our records indicate the following address:\n\n${address}\n\nPlease notify us of the member’s current address as soon as possible.\n\nThank you,`;
+        if(emailSVG=== true){
+            var body = `${greetings}\nThe mail recently sent to our mutual member ${polOwnerName}, has been returned to our office.\nWe had tried contacting the member, but we were not successful. Our records indicate the following address:\n\n${address}\n\nPlease notify us of the member’s current address as soon as possible.\n\nThank you`;
+        }
+        else{
+            var body = `${greetings}\nThe mail recently sent to you has been returned to our office and we are reaching out to obtain your current address.\nOur records indicate the following address:\n\n${address}\n\nPlease notify us of your current address along with your full name we have on file.\n\nThank you`;
+        }
 
         console.log(ticketDetails, subject, body);
 
@@ -55,6 +61,7 @@ javascript: (function () {
         console.log(mailto_link);
         window.location.href = mailto_link;
     }
+
     function showAddressInputScreen() {
         var style = document.createElement('style');
         style.innerHTML = `
@@ -63,7 +70,6 @@ javascript: (function () {
         #modal textarea{width:95%;height:150px;margin-bottom:10px;padding:10px;border:1px solid black;border-radius:5px;background-color:#ebecf0;color:black;font-size:larger;font-family:sans-serif;}
         #modal button{padding:10px 20px;margin:5px;border:none;border-radius:5px;cursor:pointer;background:#007bff;color:white;}
         #modal button:hover{background:#042f5e}
-    
     `;
         document.head.appendChild(style);
         var modalBackground = document.createElement('div');
@@ -82,7 +88,6 @@ javascript: (function () {
             var address = document.getElementById('addressTextarea').value;
             document.body.removeChild(modalBackground);
             draftEmail(address,true);
-    
         };
         document.getElementById('btn2').onclick = function () {
             var address = document.getElementById('addressTextarea').value;
