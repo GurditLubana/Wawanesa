@@ -42,14 +42,14 @@ javascript:(function () {
             polOwnerName = polOwnerName.substring(0, polOwnerName.length - 4);
         }
 
-        var subject = `Address Update Request - Policy # ${policyNum} - ${polOwnerName}`;
+        var subject = `Address Update Request - ${polOwnerName} - Policy # ${policyNum}`;
         var currentTime = (new Date()).toLocaleTimeString();
         var greetings = currentTime.endsWith("AM") ? "Good morning,\n" : "Good afternoon,\n";
         if(emailSVG=== true){
-            var body = `${greetings}\nThe mail recently sent to our mutual member ${polOwnerName}, has been returned to our office.\nWe had tried contacting the member, but we were not successful. Our records indicate the following address:\n\n${address}\n\nPlease notify us of the member’s current address as soon as possible.\n\nThank you`;
+            var body = `${greetings}\nThe mail recently sent to our mutual member ${polOwnerName}, has been returned to our office.\n\nWe had tried contacting the member, but we were not successful. Our records indicate the following address:\n\n${address}\n\nPlease notify us of the member’s current address as soon as possible.\n\nThank you`;
         }
         else{
-            var body = `${greetings}\nThe mail recently sent to you has been returned to our office and we are reaching out to obtain your current address.\nOur records indicate the following address:\n\n${address}\n\nPlease notify us of your current address along with your full name we have on file.\n\nThank you`;
+            var body = `${greetings}\nThe mail recently sent to you has been returned to our office and we are reaching out to obtain your current address.\n\nOur records indicate the following address:\n\n${address}\n\nPlease notify us of your current address along with your full name we have on file.\n\nThank you`;
         }
 
         console.log(ticketDetails, subject, body);
