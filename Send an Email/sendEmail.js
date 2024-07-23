@@ -46,10 +46,10 @@ javascript:(function () {
         var currentTime = (new Date()).toLocaleTimeString();
         var greetings = currentTime.endsWith("AM") ? "Good morning,\n" : "Good afternoon,\n";
         if(emailSVG=== true){
-            var body = `${greetings}\nThe mail recently sent to our mutual member ${polOwnerName}, has been returned to our office.\n\nWe had tried contacting the member, but we were not successful. Our records indicate the following address:\n\n${address}\n\nPlease notify us of the member’s current address as soon as possible.\n\nThank you`;
+            var body = `${greetings}\nThe mail recently sent to our mutual member ${polOwnerName}, has been returned to our office.\n\nWe had tried contacting the member, but we were not successful. Our records indicate the following address:\n\n${address}\n\nWe are reaching out to you to obtain the member’s current address so we can update our records.\n\nYour help is very much appreciated!.\n\nBest Wishes`;
         }
         else{
-            var body = `${greetings}\nThe mail recently sent to you has been returned to our office and we are reaching out to obtain your current address.\n\nOur records indicate the following address:\n\n${address}\n\nPlease notify us of your current address along with your full name we have on file.\n\nThank you`;
+            var body = `${greetings}\nThe mail recently sent to you has been returned to our office and we are reaching out to obtain your current address.\n\nOur records indicate the following address:\n\n${address}\n\nPlease notify us of your current address as soon as possible.\n\nBest Wishes`;
         }
 
         console.log(ticketDetails, subject, body);
