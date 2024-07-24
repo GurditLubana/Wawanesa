@@ -43,8 +43,7 @@ javascript:(function () {
         }
 
         var subject = `Address Update Request - ${polOwnerName} - Policy # ${policyNum}`;
-        var currentTime = (new Date()).toLocaleTimeString();
-        var greetings = currentTime.endsWith("AM") ? "Good morning,\n" : "Good afternoon,\n";
+        var greetings = "Good Day,\n";
         if(emailSVG=== true){
             var body = `${greetings}\nThe mail recently sent to our mutual member ${polOwnerName}, has been returned to our office.\n\nWe had tried contacting the member, but we were not successful. Our records indicate the following address:\n\n${address}\n\nWe are reaching out to you to obtain the member’s current address so we can update our records.\n\nYour help is very much appreciated!.\n\nBest Wishes`;
         }
