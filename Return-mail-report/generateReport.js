@@ -24,10 +24,12 @@ async function simulateScroll(element) {
     }));
     await new Promise(resolve => setTimeout(resolve, 1000));
 }
-var navbar = document.querySelector('div[aria-label="Team Priority"]');
+var navbar = (document.getElementsByClassName("css-3b7q7p")[0]).children[1];
 var navLength = navbar.children.length;
-const adrsChngNav = navbar.children[navLength - 1];
-const rtrnMailNav = navbar.children[navLength - 2];
+const adrsChngNav = navbar.children[navLength - 3];
+const rtrnMailNav = navbar.children[navLength - 4];
+console.log(adrsChngNav);
+console.log(rtrnMailNav);
 let rtrnMailPolicyList = new Set();
 let currentDate = new Date();
 console.log("Please wait, while report is being generated...");
