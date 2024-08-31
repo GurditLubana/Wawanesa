@@ -54,7 +54,7 @@ javascript: (
             setInput(policyInput, policyNumber);
         }
         function assignToMe() {
-            var assignTomeBtn = document.getElementsByClassName("css-nsst23")[1];
+            var assignTomeBtn = document.getElementsByClassName("css-nsst23")[0];
             assignTomeBtn.click();
         }
         function clickCreateBtn(){
