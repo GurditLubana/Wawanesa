@@ -22,8 +22,8 @@ function fetchEmailAddress(commentSectionInstance) {
 }
 
 function fetchTicketDetails() {
-    const summaryBtn = document.getElementsByClassName("css-t0icuu");
-    const ticketName = summaryBtn[0].getAttribute('aria-label');
+    const summaryBtn = document.getElementsByClassName("_vwz4kb7n");
+    const ticketName = summaryBtn[1].getAttribute('aria-label');
     const splitTicketName = ticketName.split("-");
     const commentSection = document.getElementsByClassName("ak-renderer-document");
     var emailArray = fetchEmailAddress(commentSection[0]);
