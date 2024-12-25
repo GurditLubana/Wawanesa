@@ -103,7 +103,7 @@ javascript: (
             setPolicyNumber(policyNumber);
             assignToMe();
             await setDescription(newAddress);
-            // clickCreateBtn();
+            clickCreateBtn();
         }
         createAddressChangeTicket();
 })();
