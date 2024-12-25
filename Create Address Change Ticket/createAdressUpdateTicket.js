@@ -1,9 +1,9 @@
 javascript: (
     function () {
         const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
-         function fetchTicketDetails() {
-            const summaryBtn = document.getElementsByClassName("css-t0icuu");
-            const ticketName = summaryBtn[0].getAttribute('aria-label');
+        function fetchTicketDetails() {
+            const summaryBtn = document.getElementsByClassName("_vwz4kb7n");
+            const ticketName = summaryBtn[1].getAttribute('aria-label');
             const splitTicketName = ticketName.split("-");
             var policyNo = splitTicketName[0].trim();
             var ownerName = splitTicketName[1].trim();
@@ -54,7 +54,7 @@ javascript: (
             setInput(policyInput, policyNumber);
         }
         function assignToMe() {
-            var assignTomeBtn = document.getElementsByClassName("css-nsst23")[0];
+            var assignTomeBtn = document.getElementsByClassName("css-dh2aos")[0];
             assignTomeBtn.click();
         }
         function clickCreateBtn(){
@@ -103,7 +103,7 @@ javascript: (
             setPolicyNumber(policyNumber);
             assignToMe();
             await setDescription(newAddress);
-            clickCreateBtn();
+            // clickCreateBtn();
         }
         createAddressChangeTicket();
 })();
